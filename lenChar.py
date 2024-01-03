@@ -61,19 +61,19 @@ Ajoutez un champ rate, puis respectivement attribuer pour chaque personne, des v
 
 '''
 # Ajouter un champ rate à chaque entrée du tableau
-for i in populations:
-    i['rate'] = randint(1, 100)
+for person in populations:
+    person['rate'] = randint(1, 100)
 
 # Afficher le tableau
-for i in populations:
-    print (i)
+for person in populations:
+    print (person)
 
 '''
 Etape 3
 Déterminez les 4 personnes qui ont les meilleurs valeurs de rate.
 
 '''
-# Créer un tableau ordonné
+# Créer un tableau en ordre décroissant
 tab_order = sorted(populations,key=lambda person: person['rate'], reverse=True)
 
 # Sélectionnez les 4 premières personnes avec les meilleures valeurs de rate
@@ -82,5 +82,84 @@ best_rate = tab_order[:4]
 # Affichez les 4 personnes avec les meilleures valeurs de rate
 for person in best_rate:
     print(f"{person['name']} a une valeur de rate de {person['rate']}.")
+
+
+'''
+Etape 4
+Attribuez une augmentation de 0.1% à chacune des valeurs ( rate ).
+
+'''
+
+# Récupérer les valeurs de chaque rate et mulitiplier par 1,1 pour rajouter 0,1%
+for person in populations:
+    person['rate'] = int(person["rate"])*1.1
+
+# Afficher le tableau
+for person in populations:
+    print (person)
+
+
+'''
+Etape 5
+Créez une fonction qui permet de tirer de manière aléatoire une personne.
+
+'''
+import random
+
+def randomPerson(populations):
+    person_random = random.choice(populations)
+    return person_random
+
+# Exemple d'utilisation de la fonction
+person_choice = randomPerson(populations)
+
+print(f"Personne tirée aléatoirement : {person_choice['name']} avec une valeur de rate de {person_choice['rate']}.")
+
+'''
+Etape 6
+Ordonnez par ordre croissant dans une liste 's' de tuples, les personnes en fonction de leur rate respectif.
+
+'''
+s=[]
+
+# Créer un tableau en ordre décroissant
+tab_order = sorted(populations,key=lambda person: person['rate'])
+
+s = [(person['name'], person['rate']) for person in tab_order]
+
+# Affichez la liste triée
+print(s)
+
+
+'''
+Etape 7
+Trouvez la valeur centrale, la valeur centrale partage en deux la série de valeurs rates ordonnées.
+
+'''
+
+# Importer median depuis statistics
+
+from statistics import median
+
+# Tableau ordonnée en ordre croissant
+tab_order = sorted(populations,key=lambda person: person['rate'], reverse=True)
+
+# Stocker les valeur chaque personne dans un nouveau tableau
+
+tab_rate = [person['rate'] for person in populations]
+
+# Appliquer la méthode median() sur ce nouveau tableau
+
+print(f"La valeur centrale est {median(tab_rate)}")
+
+
+'''
+Etape 8
+Trouvez la valeur centrale, la valeur centrale partage en deux la série de valeurs rates ordonnées.
+
+'''
+
+    
+
 
 
