@@ -128,7 +128,8 @@ tab_order = sorted(populations,key=lambda person: person['rate'])
 s = [(person['name'], person['rate']) for person in tab_order]
 
 # Affichez la liste triée
-print(s)
+for person in tab_order:
+    print(f"{person['name']} a une valeur de rate de {person['rate']}.")
 
 
 '''
@@ -158,6 +159,32 @@ Etape 8
 Trouvez la valeur centrale, la valeur centrale partage en deux la série de valeurs rates ordonnées.
 
 '''
+
+# Supposons que liste_triee_s soit la liste des tuples (nom, rate) triée par ordre croissant en fonction de la valeur de 'rate'
+
+# Trouvez la médiane
+nombre_personnes = int(len(tab_rate))
+
+if nombre_personnes % 2 == 1:
+    # Si le nombre de personnes est impair
+    mediane = tab_rate[int (nombre_personnes) // 2][1]
+else:
+    # Si le nombre de personnes est pair
+    mediane = (tab_rate[int (nombre_personnes) // 2 - 1][1] +
+               tab_rate[int (nombre_personnes) // 2][1]) / 2
+
+# Partitionnez la liste en quatre parties distinctes en utilisant la médiane
+partie1 = [personne for personne in tab_rate if personne[1] < mediane]
+partie2 = [personne for personne in tab_rate if personne[1] == mediane]
+partie3 = [personne for personne in tab_rate if personne[1] > mediane]
+partie4 = [personne for personne in tab_rate if personne[1] > mediane]
+
+# Affichez les parties
+print("Partie 1 :", partie1)
+print("Partie 2 :", partie2)
+print("Partie 3 :", partie3)
+print("Partie 4 :", partie4)
+
 
     
 
